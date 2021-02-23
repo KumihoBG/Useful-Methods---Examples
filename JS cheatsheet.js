@@ -1697,8 +1697,8 @@ function arrayModifier(arrayInt) {
     console.log(line.join(', '));
 }
 
+// Array manipulation - split, shift, remove, sum, print, add, contains
 function arrayManipulation(arr, commands) {
-
     for (let i = 0; i < commands.length; i++) {
         let splited = commands[i].split(' ');
         let command = splited[0];
@@ -1760,6 +1760,7 @@ function arrayManipulation(arr, commands) {
     }
 }
 
+// Splice, destructuring
 function movingTarget(arr) {
     arr.pop()
     let targets = arr.shift().split(' ').map(Number)
