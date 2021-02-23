@@ -1,4 +1,4 @@
-// Sort arrays by length of elements inside
+// Sorts arrays by length of elements inside
 function sortByLength(strs) {
     strs.sort(function(a, b){
         return a.length - b.length //switch here for different order

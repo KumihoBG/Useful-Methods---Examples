@@ -275,14 +275,6 @@ function power(array, n) {
     return result;
 }
 
-// Odd index position, map, filter, reverse
-function oddNumbers(arr){
-    let result = arr.filter((v, i) => (i % 2) == 1);
-    let newArr = result.map(element => element * 2);
-    newArr.reverse();
-    return newArr.join(' ');
-}
-
 // Numbers divisable by 9
 function numbersDivisible9(arg1, arg2) {
     arg1 = Number(arg1);
@@ -836,17 +828,6 @@ function solve(a, b) {
     } 
     return line;
     }
-    
-// Remove duplicate array elements / filter array elements
-function distinct(arr){
-    let unique = arr.filter(onlyUnique);
-
-    function onlyUnique(value, index, self) { // the function itself!!!
-        return self.indexOf(value) === index;
-      }
-
-    console.log(unique.join(' '));
-}
 
 // Get the next day in a date from calendar
 function nextDay(year, month, day) {
@@ -987,12 +968,6 @@ function reverseArrayStr(arr){
     console.log(output);
 }
 
-// Filter array by index 
-function extractEachKth(nums, index) {
-    const result = nums.filter(num => num % index != 0);
-    return result;
-}
-
 // Sum even nums in string array
 function sumEvenNums(str){
     let sum = 0;
@@ -1034,17 +1009,6 @@ function condenseArray(nums){
         nums = condensed;
     }
     console.log(nums[0])
-}
-// Add max elements to new array filter
-function maxSequence(arr) {
-    let max = arr[0];
-    let result = arr.filter(el => {
-        if (el >= max) {
-            max = el;
-        }
-        return el >= max;
-    });
-    console.log(result.join(' '));
 }
 
 // Max difference in an array
