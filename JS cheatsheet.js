@@ -640,6 +640,8 @@ function extractMatrixColumn(matrix, column) {
     }
     return extracted;
 }
+// Reduce for sum array indexes
+let sum = arr.reduce((a, b) => a + b, 0);
 
 // Magic matrices
 function solve(arr) {
