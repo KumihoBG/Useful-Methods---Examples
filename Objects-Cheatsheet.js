@@ -1,3 +1,12 @@
+// Fill object with key value elements from array input
+function getWantedWords(arr){
+    let occurances = {};
+    arr.shift().split(' ').forEach(word => {
+        occurances[word] = 0;
+    });;
+    return occurances;
+}
+
 // Iteration through objects and associative arrays
 function solve(input) {
     let contacts = {};
