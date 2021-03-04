@@ -7,6 +7,9 @@ function getWantedWords(arr){
     return occurances;
 }
 
+// get Obj length
+let length = Object.entries(myObj).length;
+
 // Copy an object with spread operator
 let cat1 = { ...cat2};
 
