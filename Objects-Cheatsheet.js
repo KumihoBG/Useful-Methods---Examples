@@ -7,6 +7,12 @@ function getWantedWords(arr){
     return occurances;
 }
 
+// Copy an object with spread operator
+let cat1 = { ...cat2};
+
+// Delete object KVP - don't use it often
+delete obj.someProperty;
+
 // Iteration through objects and associative arrays
 function solve(input) {
     let contacts = {};
