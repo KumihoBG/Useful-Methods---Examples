@@ -351,3 +351,29 @@ function travelTime(arr) {
         console.log(innerResult.trim());
     }
 }
+
+// Sum object values on iterration
+function solve(input) {
+    let resources = {};
+    let material = "";
+    let quantity = 0;
+  
+    for (let k = 0; k < input.length; k++) {
+    // gets even and odd positions
+      if (k % 2 === 0) {
+        material = input[k];
+      } else {
+        quantity = Number(input[k]);
+        if (resources.hasOwnProperty(material)) {
+            // sums every value of the same key in an object
+          resources[material] += quantity;
+        } else {
+          resources[material] = quantity;
+        }
+      }
+    }
+  
+    for (let [key, value] of Object.entries(resources)) {
+      console.log(`${key} -> ${value}`);
+    }
+  }
