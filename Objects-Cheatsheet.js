@@ -432,3 +432,31 @@ function studentsRegister(arr) {
         return arr.reduce((a, b) => a + b, 0) / arr.length;
     }
 }
+
+// Find duplicate arrays in array
+function sequences(matrix) {
+    let obj = {};
+    let storage = [];
+
+    for (let line of matrix) {
+        line = JSON.parse(line);
+        if (!obj.hasOwnProperty(line)){
+            obj[line] = line;
+        }
+    }
+    // sort values by array length
+    let sortedObj = Object.values(obj).sort((a,b) => a.length - b.length);
+    
+    for (let arr of sortedObj) {
+        // sort value arrays in descending order
+        let sortedDes = arr.sort((a,b) => b - a);
+        storage.push(sortedDes);
+    }
+    // find duplicate arrays in array!!!
+    let result = Array.from(new Set(storage.map(JSON.stringify)), JSON.parse);
+    
+    // print result
+    for (let el of result) {
+        console.log(`[${el.join(', ')}]`);
+    }
+}
