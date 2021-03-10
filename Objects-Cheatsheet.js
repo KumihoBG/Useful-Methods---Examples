@@ -483,7 +483,10 @@ function solve(input) {
         let sum = pow.map(a => a[1]).reduce((a, b) => a + b)
         array.push([name, pow, sum])
     }
+    // Sort object properties
     array.sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0]))
+
+    // Print
     for (let part of array) {
         console.log(`${part[0]}: ${part[2]} skill`);
         part[1]
@@ -491,6 +494,8 @@ function solve(input) {
             .map(x => console.log(`- ${x[0]} <!> ${x[1]}`))
     }
 
+
+    // Create object and add elements to it
     function add(el) {
         let [gladiator, skill, power] = el.split(' -> ')
         power = Number(power)
@@ -509,6 +514,7 @@ function solve(input) {
         }
     }
 
+    // Compare two properties of an object
     function battle(el) {
         let [gladiatorA, gladiatorB] = el.split(' vs ')
         if (list.hasOwnProperty(gladiatorA) && list.hasOwnProperty(gladiatorB)) {
