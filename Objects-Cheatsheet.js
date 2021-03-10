@@ -483,7 +483,7 @@ function solve(input) {
         let sum = pow.map(a => a[1]).reduce((a, b) => a + b)
         array.push([name, pow, sum])
     }
-    // Sort object properties
+    // Sort object properties - an array element
     array.sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0]))
 
     // Print
