@@ -34,3 +34,41 @@ function solve(text, word) {
     console.log(text);
 }
 
+// tests if string contains a number
+let test = /\d/.test(word); // returns true or false
+
+// finds hash tags and cuts them from words
+function hashTag(str) {
+    let newWord = "";
+    let sentence = str.split(' ');
+
+
+    for (let word of sentence) {
+        let test = /\d/.test(word);
+
+        if (word.startsWith("#") && word.length > 1 && test == false){
+            newWord = word.split("#")[1];
+            console.log(newWord);
+        }
+    }
+}
+
+// reveals censored words
+function revealWords(param1, param2) {
+    let samples = param1.split(", ");
+    let sentence = param2;
+    let result = "";
+
+    for (let word of samples) {
+        let length = word.length;
+        for (let el of sentence.split(' ')) {
+            if (el.length === length) {
+                if (el.includes("*")) {
+                    result = sentence.replace(el, word);
+                    sentence = result;
+                }
+            }
+        }
+    }
+    console.log(result);
+}
