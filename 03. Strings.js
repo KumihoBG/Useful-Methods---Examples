@@ -401,3 +401,61 @@ function insertDashes(arr) {
     }
    console.log(finalArray);
 }
+
+// Pascal Case splitter
+function pascalCaseSplit(str) {
+    let result = str.match(/[A-Z][a-z]+/g);
+    console.log(result.join(", "));
+}
+
+function pascalCase(str) {
+    let result = [];
+    let index = 0;
+    for (let i = 1; i < str.length; i++) {
+        if (str[i].charCodeAt() >= 60 && str[i].charCodeAt() <= 90) {
+            let word = str.substring(index, i);
+            result.push(word);
+            index = i;
+        }
+ 
+    }
+    result.push(str.substring(index, str.length))
+    console.log(result.join(', '));
+}
+
+// Cut reverse string
+function cutReverse(str) {
+    let index = Math.ceil(str.length / 2);
+    let resultOne = str.slice(index).split('').reverse().join('');
+    let resultTwo = str.slice(0, index).split('').reverse().join('');
+    console.log(resultTwo + '\n' + resultOne);
+}
+
+// pushes new words in empty spaces - splice, includes
+function hardWord(arr) {
+    let str = arr[0];
+    let newArr = arr[1];
+    str = str.split(' ');
+    
+    for (let hole of str) {
+        if (hole.includes("_")){
+            let length = hole.length;
+            if(hole.endsWith('.') || hole.endsWith(',')) {
+                length -= 1;
+            }
+            for (let word of newArr) {
+                if (word.length == length) {
+                let index = str.indexOf(hole);
+                if(hole.endsWith('.')) {
+                    str.splice(index, 1, word + ".");
+                } else if (hole.endsWith(',')){
+                    str.splice(index, 1, word + ",");
+                } else {
+                    str.splice(index, 1, word);
+                }
+                }
+            }
+        }
+    }  
+    console.log(str.join(' '));
+}
