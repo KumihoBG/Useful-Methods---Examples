@@ -579,3 +579,19 @@ function valueOfString(str) {
 
     console.log(`The total sum is: ${totalSum}`);
 }
+
+// concat - index occurences of a char in a string
+function serialize(str) {
+    let sequence = str.shift();
+    let collection = {};
+
+    for (let i = 0; i < sequence.length; i++) {
+        let char = sequence[i];
+        // important how to fill an object!!!
+        collection[char] = (collection[char] || []).concat(i);
+    }
+
+    Object.entries(collection).forEach(([char, keys]) => {
+        console.log(`${char}:${keys.join('/')}`);
+    });
+}
