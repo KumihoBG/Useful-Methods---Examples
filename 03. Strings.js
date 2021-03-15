@@ -595,3 +595,47 @@ function serialize(str) {
         console.log(`${char}:${keys.join('/')}`);
     });
 }
+
+// from array to string
+function deserialize(str) {
+    let line = str.shift();
+    let arr = [];
+
+    while (line !== "end") {
+        let [char, indexes] = line.split(':');
+        let position = indexes.split('/');
+        for (let i = 0; i < position.length; i++) {
+            let currentIndex = Number(position[i]);
+            arr[currentIndex] = char;
+        }
+        line = str.shift();
+    }
+    console.log(arr.join(''));
+}
+
+// pattern remove from start and end of string, cut pattern
+function melrah(input) {
+    let randomStr = input.shift();
+    let pattern = input.shift();
+
+    while (pattern.length > 0) {
+        let firstMatch = randomStr.indexOf(pattern);
+        let lastMatch = randomStr.lastIndexOf(pattern);
+        if ((firstMatch > -1 && lastMatch > -1) && firstMatch !== lastMatch) {
+            randomStr = randomStr.split('');
+            randomStr.splice(firstMatch, pattern.length);
+            randomStr = randomStr.join('');
+            lastMatch = randomStr.lastIndexOf(pattern);
+            randomStr = randomStr.split('')
+            randomStr.splice(lastMatch, pattern.length)
+            let removeFromPatt = pattern[Math.floor(pattern.length / 2)]
+            pattern = pattern.replace(removeFromPatt, '');
+            randomStr = randomStr.join('')
+            console.log('Shaked it.');
+        } else {
+            break;
+        }
+    }
+    console.log('No shake.');
+    console.log(randomStr);
+}
