@@ -541,3 +541,41 @@ function lettersChange(input) {
         return result.slice(0, result.length - 1);
     }
 }
+
+function valueOfString(str) {
+    let totalSum = 0;
+    let example = str[0];
+    let command = str[1];
+
+    for (let i = 0; i < example.length; i++) {
+        let char = example[i];
+        let isNum = Number(char);
+        // checks if char is symbol other than letter
+        if (!((char.charCodeAt() >= 48 && char.charCodeAt() <= 57) ||
+            (char.charCodeAt() >= 65 && char.charCodeAt() <= 90) ||
+            (char.charCodeAt() >= 97 && char.charCodeAt() <= 122))) {
+            continue;
+            // checks if char is Number
+        } else if (Number.isInteger(isNum)) {
+            continue;
+        } else {
+            let index = example.indexOf(char);
+            if (command === "UPPERCASE") {
+                // checks if char is uppercase
+                if (char === char.toUpperCase()) {
+                    let num = Number(example.charCodeAt(index));
+                    totalSum += num;
+                }
+            } else {
+                // checks if char is lowercase
+                if (char === char.toLowerCase()) {
+                    let num = Number(example.charCodeAt(index));
+                    totalSum += num;
+                }
+            }
+            index++;
+        }
+    }
+
+    console.log(`The total sum is: ${totalSum}`);
+}
