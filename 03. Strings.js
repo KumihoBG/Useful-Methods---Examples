@@ -34,6 +34,16 @@ function solve(text, word) {
     console.log(text);
 }
 
+// removes pattern from string
+function removeOccurences(word, text) {
+    let old;
+    while (old !== text) {
+        old = text;
+        text = text.replace(word, '');
+    }
+    console.log(text);
+}
+
 // tests if string contains a number
 let test = /\d/.test(word); // returns true or false
 
