@@ -35,3 +35,17 @@ function removeOccurrences() {
     }
     console.log(`Total money spend: ${total.toFixed(2)}`);
 }
+
+// Common regex from solutions
+let breaksString = />>(?<name>[A-Z]+[a-z]*)<<(?<price>\d+[\.|\d]\d*)!(?<count>\d+)/;
+let takesLettersOnly = /[A-Za-z]+/g;
+let takesDigitsOnly = /[\d]/g;
+let breaksIntoMultiple = /%(?<customer>[A-Z][a-z]+)%[^|$%.]*<(?<product>[\w]+)>[^|$%.]*.*[|](?<count>[\d]+)[|][^|$%.\d]*[^\d]*(?<price>[\d]+\.?[\d]+)[$]/g;
+let patternPlanetMessage = /@(?<name>[A-Za-z]+)[^@:!\->]*:(?<population>\d+)[^@:!\->]*!(?<command>[A|D])![^@:!\->]*\->(?<soldier>\d+)/g;
+let plusMinus = /[^0-9.\/+*-]/g;
+let digitFloat = /[+-]?\d+\.?\d*/g;
+let multiplyOrDivide = /\*|\//g;
+//input.split(',').map(x => x.trim()) 
+let splitPatternTrim = / *, */g;
+let anotherSplitTrim = /\s*,\s*/g; 
+let emailPattern = /((?<=\s)[a-zA-Z0-9]+([-.]\w*)*@[a-zA-Z]+?([.-][a-zA-Z]*)*(\.[a-z]{2,}))/gi;
