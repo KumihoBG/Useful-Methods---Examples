@@ -7,6 +7,13 @@ function removeOccurrences() {
      console.log(removed.join(''));
  }
 
+ // Substring and replace
+ function changeAll(subStr, replacement) {
+    subStr = subStr.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
+    let pattern = new RegExp(subStr, 'g');
+    message = message.replace(pattern, replacement);
+}
+
  // Typical solution
  function furniture(arr){
     let command = arr.shift();
