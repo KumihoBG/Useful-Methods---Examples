@@ -56,3 +56,31 @@ let multiplyOrDivide = /\*|\//g;
 let splitPatternTrim = / *, */g;
 let anotherSplitTrim = /\s*,\s*/g; 
 let emailPattern = /((?<=\s)[a-zA-Z0-9]+([-.]\w*)*@[a-zA-Z]+?([.-][a-zA-Z]*)*(\.[a-z]{2,}))/gi;
+
+function addAstra(input) {
+    let totalCalories = 0;
+    let caloriesPerDay = 2000;
+    let days = 0;
+    let items = []; // using an array to push the values because there might be occurences which could be rewritten(mistake)
+    // very useful pattern using groups for char pairs
+    let pattern = /([#|])(?<item>[A-Za-z\s]+)\1(?<expiration>[0-9]{2}\/[0-9]{2}\/[0-9]{2})\1(?<calories>(\d){1,5})\1/g;
+
+    let result = "";
+    while ((result = pattern.exec(input[0])) !== null) {
+        let item = result.groups['item'];
+        let expiration = result.groups['expiration'];
+        let calories = Number(result.groups['calories']);
+        // pushing items inside
+        items.push({ item, expiration, calories });
+        totalCalories += calories;
+    }
+
+    days = Math.floor(totalCalories / caloriesPerDay);
+    console.log(`You have food to last you for: ${days} days!`);
+    if (days > 0) {
+        // line is actually an object but we use for of because items is an array
+        for (let line of items) {
+            console.log(`Item: ${line.item}, Best before: ${line.expiration}, Nutrition: ${line.calories}`);
+        }
+    }
+}
