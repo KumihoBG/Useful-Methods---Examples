@@ -534,3 +534,57 @@ function solve(input) {
         }
     }
 }
+
+
+// Standard task
+function pianist(input) {
+    let pieces = Number(input.shift());
+    let pianist = {};
+
+    for (let i = 0; i < pieces; i++) {
+        let [piece, composer, key] = input.shift().split('|');
+        pianist[piece] = { composer, key };
+    }
+
+    let line = input.shift();
+    while (line !== "Stop") {
+        let [command, first, second, third] = line.split("|");
+        switch (command) {
+            case "Add":
+                let piece = first;
+                let composer = second;
+                let key = third;
+                if (!pianist.hasOwnProperty(piece)) {
+                    pianist[piece] = { composer, key };
+                    console.log(`${piece} by ${composer} in ${key} added to the collection!`);
+                } else {
+                    console.log(`${piece} is already in the collection!`);
+                }
+                break;
+
+            case "Remove":
+                if (pianist.hasOwnProperty(first)) {
+                    delete pianist[first];
+                    console.log(`Successfully removed ${first}!`);
+                } else {
+                    console.log(`Invalid operation! ${first} does not exist in the collection.`);
+                }
+                break;
+            case "ChangeKey":
+                let newKey = second;
+                if (pianist.hasOwnProperty(first)) {
+                    pianist[first].key = newKey;
+                    console.log(`Changed the key of ${first} to ${newKey}!`);
+                } else {
+                    console.log(`Invalid operation! ${first} does not exist in the collection.`);
+                }
+                break;
+        }
+        line = input.shift();
+    }
+    let sorted = Object.entries(pianist).sort((a, b) => a[0].localeCompare(b[0])) || ((a, b) => a[1].composer.localeCompare(b[1].composer));
+
+    for (let kvp of sorted) {
+        console.log(`${kvp[0]} -> Composer: ${kvp[1].composer}, Key: ${kvp[1].key}`);
+    }
+}
