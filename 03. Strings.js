@@ -649,3 +649,42 @@ function melrah(input) {
     console.log('No shake.');
     console.log(randomStr);
 }
+
+// Typical task
+function worldTour(arr) {
+    let stops = arr.shift()
+    arr.pop()
+
+    for (let line of arr) {
+        let [command, ...args] = line.split(':')
+
+        if (command == 'Add Stop') {
+            let [index, string] = args
+            index = Number(index)
+            if (stops[index] !== undefined) {
+                let tempStops = stops.split('')
+                tempStops.splice(index, 0, string)
+                stops = tempStops.join('')
+            }
+            console.log(stops);
+        } else if (command == 'Remove Stop') {
+            let [start, end] = args
+            start = Number(start)
+            end = Number(end)
+            if (stops[start] !== undefined && stops[end] !==undefined) {
+                stops = stops.split('')
+                stops.splice(start, end - start + 1)
+                stops = stops.join('')
+            }
+            console.log(stops);
+        } else if (command == 'Switch') {
+            let [oldStr, newStr] = args
+            if (stops.includes(oldStr)) {
+                let re = new RegExp(oldStr, "g")
+                stops = stops.replace(re, newStr)
+            }
+            console.log(stops);
+        }
+    }
+    console.log(`Ready for world tour! Planned stops: ${stops}`);
+}
