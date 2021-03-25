@@ -688,3 +688,44 @@ function worldTour(arr) {
     }
     console.log(`Ready for world tour! Planned stops: ${stops}`);
 }
+
+// Insert, replace, substr, concat
+function secretChat(input) {
+    let message = input.shift();
+
+    for (let line of input) {
+        if (line === "Reveal") {
+            console.log(`You have a new text message: ${message}`);
+            break;
+        }
+        let [command, ...arguments] = line.split(':|:');
+        if (command === "InsertSpace") {
+            let index = Number(arguments[0]);
+            let newChar = ' ';
+            // inserts char at given position in string
+            message = [message.slice(0, index), newChar, message.slice(index)].join('');
+            console.log(message);
+        } else if (command === "Reverse") {
+            let substring = arguments[0];
+                if (message.includes(substring)) {
+                    // slice a message
+                    message = message.replace(substring, '');
+                    // reverse replacement
+                    substring = substring.split('').reverse().join('');
+                    // joins two parts
+                    message = message.concat(substring);
+                    console.log(message);
+            } else {
+                console.log('error');
+            }
+        } else if (command === "ChangeAll") {
+            let substring = arguments[0];
+            let replacement = arguments[1];
+            for (let char of message) {
+                // replaces with given char
+                message = message.replace(substring, replacement);
+            }
+            console.log(message);
+        }
+    };
+}
