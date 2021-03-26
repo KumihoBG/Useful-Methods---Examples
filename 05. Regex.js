@@ -84,3 +84,59 @@ function addAstra(input) {
         }
     }
 }
+
+// Palindromes
+function mirrorWords(input) {
+    let str = input[0];
+    let pattern = /([@#])[A-Za-z]{3,}\1{2}[A-Za-z]{3,}\1/g;
+    let hiddenPairs = '';
+    let pairs = [];
+    let palindromes = [];
+    let printLine = [];
+
+    while ((hiddenPairs = pattern.exec(str)) != null) {
+        let hiddenPair = hiddenPairs[0];
+        pairs.push(hiddenPair);
+    }
+
+    if (pairs.length == 0) {
+        console.log('No word pairs found!');
+    } else {
+        console.log(`${pairs.length} word pairs found!`);
+    }
+
+    for (let pair of pairs) {
+        if (palindrome(pair)) {
+            palindromes.push(pair);
+        }
+    }
+
+    if (palindromes.length === 0) {
+        console.log(`No mirror words!`);
+    } else {
+        console.log("The mirror words are:");
+        for (let pal of palindromes) {
+            // slice, split by 2 symbols, remove empty spaces and join them again by <=>
+            pal = pal.slice(1, -1).split(/@|#{2}/g).filter(x => x.length > 0);
+            pal = pal.join(' <=> ');
+            printLine.push(pal);
+        }
+        console.log(printLine.join(', '));
+    }
+
+    function palindrome(input) {
+        let isPalindrome = false;
+        let first = input.slice(1, -1);
+
+        if (first.includes('@')) {
+            first = first.split('@@');
+        } else if (first.includes('#')) {
+            first = first.split('##');
+        }
+        let second = first[1].split('').reverse().join('');
+        if (first[0] === second) {
+            isPalindrome = true;
+        }
+        return isPalindrome;
+    }
+}
