@@ -689,6 +689,23 @@ function worldTour(arr) {
     console.log(`Ready for world tour! Planned stops: ${stops}`);
 }
 
+// Palindrome
+function palindrome(input){
+    let isPalindrome = false;
+    let first = input.slice(1, -1);
+
+    if (first.includes('@')){
+        first = first.split('@@');
+    } else if(first.includes('#')){
+        first = first.split('##');
+    }
+    let second = first[1].split('').reverse().join('');
+    if (first[0] === second) {
+        isPalindrome = true;
+    }
+    return isPalindrome;
+}
+
 // Insert, replace, substr, concat
 function secretChat(input) {
     let message = input.shift();
