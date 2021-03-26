@@ -624,3 +624,66 @@ function plantDiscovery(arr) {
         console.log(`- ${key[0]}; Rarity: ${key[1].rarity}; Rating: ${key[1].rating.toFixed(2)}`);
     }
 }
+
+// Need for speed
+function needForSpeed(input) {
+    let cars = {};
+    let carsNum = Number(input.shift());
+    for (let i = 0; i < carsNum; i++) {
+        let [car, mileage, fuel] = input.shift().split('|');
+        fuel = Number(fuel);
+        mileage = Number(mileage);
+        cars[car] = { fuel, mileage };
+    }
+
+    let commands = input.shift();
+    while (commands !== "Stop") {
+        let [command, carName, ...carInfo] = commands.split(' : ');
+        if (command === "Drive") {
+            let distance = Number(carInfo[0]);
+            let fuel = Number(carInfo[1]);
+            if (cars[carName].fuel < fuel) {
+                console.log('Not enough fuel to make that ride');
+            } else {
+                cars[carName].mileage += distance;
+                cars[carName].fuel -= fuel;
+                console.log(`${carName} driven for ${distance} kilometers. ${fuel} liters of fuel consumed.`);
+            }
+            if (cars[carName].mileage > 100000) {
+                console.log(`Time to sell the ${carName}!`);
+                delete cars[carName];
+            }
+        } else if (command === "Refuel") {
+            let fuel = Number(carInfo[0]);
+            let oldFuel = cars[carName].fuel;
+            if (oldFuel + fuel > 75) {
+                cars[carName].fuel = 75;
+                console.log(`${carName} refueled with ${75 - oldFuel} liters`);
+            } else {
+                cars[carName].fuel += fuel;
+                console.log(`${carName} refueled with ${fuel} liters`);
+            }
+        } else if (command === "Revert") {
+            let kilometers = Number(carInfo[0]);
+            cars[carName].mileage -= kilometers;
+            if (cars[carName].mileage < 10000) {
+                cars[carName].mileage = 10000;
+            } else {
+                console.log(`${carName} mileage decreased by ${kilometers} kilometers`);
+            }
+        }
+        commands = input.shift();
+    }
+    let sorted = Object.entries(cars);
+    // good sorting function
+    sorted.sort((a, b) => {
+        if (b[1].mileage === a[1].mileage){
+            return a[0].localeCompare(b[0]);
+        } else {
+            return b[1].mileage - a[1].mileage;
+        }
+    })
+    for (let kvp of sorted) {
+        console.log(`${kvp[0]} -> Mileage: ${kvp[1].mileage} kms, Fuel in the tank: ${kvp[1].fuel} lt.`);
+    }
+}
