@@ -140,3 +140,51 @@ function mirrorWords(input) {
         return isPalindrome;
     }
 }
+
+// Fancy barcodes
+function fancyBarcodes(input) {
+    let count = Number(input.shift());
+    let mainPattern = /(@#+)([A-Z][A-Za-z\d]{4,}[A-Z])(@#+)/g;
+    let product = '';
+    let digit = '';
+    let barcodes = [];
+    let isValid = false;
+
+    for (let i = 0; i < count; i++) {
+        let line = input[i];
+        let result = mainPattern.exec(line);
+        // if it is valid barcode
+        if (result !== null) {
+            barcodes.push(result[0]);
+            isValid = true;
+            // if it is NOT a valid barcode
+        } else {
+            isValid = false;
+            console.log('Invalid barcode');
+        }
+
+        // execute only of the barcodes are valid
+        if (isValid == true) {
+            while (result !== null) {
+                let secondPattern = /\d/g;
+                let secondResult = secondPattern.exec(line);
+                if (secondResult !== null) {
+                    for (let char of line) { 
+                        // here we check if char is number
+                        if (!isNaN(char)) {
+                            digit += char;
+                            isValid = true;
+                        }
+                    }
+                    console.log(`Product group: ${digit}`);
+                    digit = '';
+                } else {
+                    product = "00";
+                    console.log(`Product group: ${product}`);
+                }
+                break;
+
+            } result = mainPattern.exec(line);
+        }
+    }
+}
