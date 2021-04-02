@@ -1,21 +1,21 @@
 // remove occurences
 function removeOccurrences() {
-    let word=arguments['0'];
+    let word = arguments['0'];
     let text = arguments['1'];
-     let regex = new RegExp(`[\^${word}]`,'g');
-     let removed = text.match(regex)
-     console.log(removed.join(''));
- }
+    let regex = new RegExp(`[\^${word}]`, 'g');
+    let removed = text.match(regex)
+    console.log(removed.join(''));
+}
 
- // Substring and replace
- function changeAll(subStr, replacement) {
+// Substring and replace
+function changeAll(subStr, replacement) {
     subStr = subStr.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
     let pattern = new RegExp(subStr, 'g');
     message = message.replace(pattern, replacement);
 }
 
- // Typical solution
- function furniture(arr){
+// Typical solution
+function furniture(arr) {
     let command = arr.shift();
     let pattern = />>(?<name>[A-Z]+[a-z]*)<<(?<price>\d+[\.|\d]\d*)!(?<count>\d+)/;
     let test = "";
@@ -28,7 +28,7 @@ function removeOccurrences() {
         test = pattern.test(command);
         if (test === true) {
             // let result = String(el).match(pattern)
-            while ((result = pattern.exec(command)) !== null){
+            while ((result = pattern.exec(command)) !== null) {
                 let name = result.groups['name'];
                 let price = Number(result.groups['price']);
                 let count = Number(result.groups['count']);
@@ -54,7 +54,7 @@ let digitFloat = /[+-]?\d+\.?\d*/g;
 let multiplyOrDivide = /\*|\//g;
 //input.split(',').map(x => x.trim()) 
 let splitPatternTrim = / *, */g;
-let anotherSplitTrim = /\s*,\s*/g; 
+let anotherSplitTrim = /\s*,\s*/g;
 let emailPattern = /((?<=\s)[a-zA-Z0-9]+([-.]\w*)*@[a-zA-Z]+?([.-][a-zA-Z]*)*(\.[a-z]{2,}))/gi;
 
 function addAstra(input) {
@@ -169,7 +169,7 @@ function fancyBarcodes(input) {
                 let secondPattern = /\d/g;
                 let secondResult = secondPattern.exec(line);
                 if (secondResult !== null) {
-                    for (let char of line) { 
+                    for (let char of line) {
                         // here we check if char is number
                         if (!isNaN(char)) {
                             digit += char;
@@ -193,4 +193,10 @@ function fancyBarcodes(input) {
 function pascalCaseSplit(str) {
     let result = str.match(/[A-Z][a-z]+/g);
     console.log(result.join(", "));
+}
+
+// count vowels in a string and returns count
+function getVowels(str) {
+    var m = str.match(/[aeiou]/gi);
+    return m === null ? 0 : m.length;
 }

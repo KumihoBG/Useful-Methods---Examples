@@ -330,9 +330,9 @@ function characters(arg) {
 }
 
 // Replace char from one string
-function rightPlace(str, char, result){
+function rightPlace(str, char, result) {
     let word = str.replace("_", char);
-    if (word === result){
+    if (word === result) {
         console.log('Matched');
     } else {
         console.log('Not Matched');
@@ -343,18 +343,18 @@ function rightPlace(str, char, result){
 function differentSymbolsNaive(str) {
     let charArr = str.split('');
     let set = new Set();
-    for(let char of charArr) {
+    for (let char of charArr) {
         set.add(char);
     };
-   console.log(set.size);
+    console.log(set.size);
 }
 
 
 // Looks for char in a string = includes()
-function intFloat(num1, num2, num3){
+function intFloat(num1, num2, num3) {
     let sum = num1 + num2 + num3;
     let result = sum + "";
-    if (result.includes('.')){
+    if (result.includes('.')) {
         console.log(`${sum} - Float`);
     } else {
         console.log(`${sum} - Integer`);
@@ -379,19 +379,19 @@ function sum(arg) {
 }
 
 // Reverse array of strings
-function reverseArrayStr(arr){
+function reverseArrayStr(arr) {
     let reversed = arr.reverse();
     let output = reversed.join(' ');
     console.log(output);
 }
 
 // Sum even nums in string array
-function sumEvenNums(str){
+function sumEvenNums(str) {
     let sum = 0;
 
-    for (i = 0; i < str.length; i++){
+    for (i = 0; i < str.length; i++) {
         let currentNum = Number(str[i]);
-        if (currentNum % 2 == 0){
+        if (currentNum % 2 == 0) {
             sum += currentNum;
         }
     }
@@ -403,13 +403,13 @@ function insertDashes(arr) {
     let index = 0;
     let newArray = arr.toString();
     let finalArray = newArray[index++];
-    for (i = 0; i < newArray.length-1; i++){
-        if (newArray[i] % 2 != 0 && newArray[i + 1] % 2 != 0){
+    for (i = 0; i < newArray.length - 1; i++) {
+        if (newArray[i] % 2 != 0 && newArray[i + 1] % 2 != 0) {
             finalArray += '-';
         }
         finalArray += newArray[index++];
     }
-   console.log(finalArray);
+    console.log(finalArray);
 }
 
 // Pascal Case splitter
@@ -427,7 +427,7 @@ function pascalCase(str) {
             result.push(word);
             index = i;
         }
- 
+
     }
     result.push(str.substring(index, str.length))
     console.log(result.join(', '));
@@ -446,27 +446,27 @@ function hardWord(arr) {
     let str = arr[0];
     let newArr = arr[1];
     str = str.split(' ');
-    
+
     for (let hole of str) {
-        if (hole.includes("_")){
+        if (hole.includes("_")) {
             let length = hole.length;
-            if(hole.endsWith('.') || hole.endsWith(',')) {
+            if (hole.endsWith('.') || hole.endsWith(',')) {
                 length -= 1;
             }
             for (let word of newArr) {
                 if (word.length == length) {
-                let index = str.indexOf(hole);
-                if(hole.endsWith('.')) {
-                    str.splice(index, 1, word + ".");
-                } else if (hole.endsWith(',')){
-                    str.splice(index, 1, word + ",");
-                } else {
-                    str.splice(index, 1, word);
-                }
+                    let index = str.indexOf(hole);
+                    if (hole.endsWith('.')) {
+                        str.splice(index, 1, word + ".");
+                    } else if (hole.endsWith(',')) {
+                        str.splice(index, 1, word + ",");
+                    } else {
+                        str.splice(index, 1, word);
+                    }
                 }
             }
         }
-    }  
+    }
     console.log(str.join(' '));
 }
 
@@ -521,14 +521,14 @@ function lettersChange(input) {
         line = Number(line);
         let position = Number(alphabetPosition(first));
         let positionTwo = Number(alphabetPosition(second))
-        
-        if (first === first.toUpperCase() || first === first.toUpperCase()) {  
+
+        if (first === first.toUpperCase() || first === first.toUpperCase()) {
             result = line / position;
         } else {
             result = line * position;
         }
-    
-        if (second === second.toUpperCase() || second === second.toUpperCase()) {  
+
+        if (second === second.toUpperCase() || second === second.toUpperCase()) {
             result -= positionTwo;
         } else {
             result += positionTwo;
@@ -671,7 +671,7 @@ function worldTour(arr) {
             let [start, end] = args
             start = Number(start)
             end = Number(end)
-            if (stops[start] !== undefined && stops[end] !==undefined) {
+            if (stops[start] !== undefined && stops[end] !== undefined) {
                 stops = stops.split('')
                 stops.splice(start, end - start + 1)
                 stops = stops.join('')
@@ -690,13 +690,13 @@ function worldTour(arr) {
 }
 
 // Palindrome
-function palindrome(input){
+function palindrome(input) {
     let isPalindrome = false;
     let first = input.slice(1, -1);
 
-    if (first.includes('@')){
+    if (first.includes('@')) {
         first = first.split('@@');
-    } else if(first.includes('#')){
+    } else if (first.includes('#')) {
         first = first.split('##');
     }
     let second = first[1].split('').reverse().join('');
@@ -724,14 +724,14 @@ function secretChat(input) {
             console.log(message);
         } else if (command === "Reverse") {
             let substring = arguments[0];
-                if (message.includes(substring)) {
-                    // slice a message
-                    message = message.replace(substring, '');
-                    // reverse replacement
-                    substring = substring.split('').reverse().join('');
-                    // joins two parts
-                    message = message.concat(substring);
-                    console.log(message);
+            if (message.includes(substring)) {
+                // slice a message
+                message = message.replace(substring, '');
+                // reverse replacement
+                substring = substring.split('').reverse().join('');
+                // joins two parts
+                message = message.concat(substring);
+                console.log(message);
             } else {
                 console.log('error');
             }
