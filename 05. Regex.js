@@ -188,3 +188,9 @@ function fancyBarcodes(input) {
         }
     }
 }
+
+// Pascal Case splitter
+function pascalCaseSplit(str) {
+    let result = str.match(/[A-Z][a-z]+/g);
+    console.log(result.join(", "));
+}
