@@ -340,6 +340,15 @@ function smallestNum(a, b, c){
     return smallest;
 }
 
+// Smallest two numbers in array
+function smallestTwoNums(input) {
+    let result = input
+    .sort((a, b) => a - b)
+    .slice(0, 2)
+    .join(' ');
+    return result;
+}
+
 // Min number
 function minNumbers(input) {
     let min_number = 1000000000;
