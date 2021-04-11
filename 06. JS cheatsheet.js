@@ -468,6 +468,17 @@ function lastKSeq(n, k){
     console.log(result.join(' '));
 }
 
+// last K number sequence
+function lastKNumbersSequence(n, k) {
+    let result = [1];
+
+    for (let i = 1; i < n; i++) {
+         let startIndex = Math.max(0, i - k);
+         let currentElement = result.slice(startIndex, startIndex + k).reduce((a, b) => a + b, 0);
+         result.push(currentElement);
+    }
+    console.log(result.join(" "));
+}
 
 // Sum prime non prime
 function numbers(input) {
@@ -1490,4 +1501,18 @@ function movingTarget(arr) {
     }
 
     console.log(targets.join('|'))
+}
+
+// Greatest common divisor
+function divisor(x, y) {
+    if ((typeof x !== 'number') || (typeof y !== 'number'))
+        return false;
+    x = Math.abs(x);
+    y = Math.abs(y);
+    while (y) {
+        let t = y;
+        y = x % y;
+        x = t;
+    }
+    return x;
 }

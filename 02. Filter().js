@@ -35,3 +35,9 @@ function maxSequence(arr) {
     });
     console.log(result.join(' '));
 }
+
+// filter even positions in array
+function evenPositions(input) {
+    let result = input.filter((v, i) => (i % 2) == 0);
+    return result;
+}
