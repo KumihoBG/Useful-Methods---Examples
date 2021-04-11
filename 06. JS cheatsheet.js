@@ -627,6 +627,39 @@ function matrix(num) {
     }
 }
 
+// Biggest number in a matrix
+function biggestElement(matrix) {
+    let biggest = Number.MIN_SAFE_INTEGER;
+
+    for (let row of matrix) {
+        for (let num of row) {
+            if (num > biggest) {
+                biggest = num;
+            }
+        }
+    }
+
+    return biggest;
+}
+
+// Equal neighbors in matrix
+function equalNeighbors(matrix) {
+    let pairs = 0;
+
+    matrix.forEach((row, index) => {
+        row.forEach((el, position) => {
+            if (el === row[position + 1]){
+                pairs++;
+            }
+
+            if (matrix[index + 1] && el === matrix[index + 1][position]) {
+                pairs++;
+            }
+        });
+    });
+    return pairs;
+}
+
 // Array Rotation - shift push
 function arrayRotate(input, rotator){
 
