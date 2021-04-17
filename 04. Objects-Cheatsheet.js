@@ -1,3 +1,17 @@
+// Copy object and take key values from library
+function factory(library, orders) {
+    let fulfilledOrders = [];
+  
+    for (let order of orders) {
+      const copyObj = Object.assign({}, order.template);
+      for (let part of order.parts) {
+        copyObj[part] = library[part];
+      }
+      fulfilledOrders.push(copyObj);
+    }
+    return fulfilledOrders;
+}
+
 // Fill object with key value elements from array input
 function getWantedWords(arr){
     let occurances = {};

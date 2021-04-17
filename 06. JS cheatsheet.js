@@ -1,3 +1,10 @@
+// Rest operator
+function sum(...theArgs) {
+    return theArgs.reduce((previous, current) => {
+      return previous + current;
+    });
+  }
+
 // Remove trailing zeroes
 firstNum = parseFloat(firstNum.toFixed(secondNum));
 
@@ -611,7 +618,6 @@ function solve(arr) {
     let sumCol = arr.reduce((r, a) => r.map((b, i) => a[i] + b));
     let allEqual = array => array.every( v => v === array[0]);
     return allEqual(sumRow) && allEqual(sumRow) && sumRow.toString() === sumCol.toString();
-
 }
 
 // Print n * n matrix
