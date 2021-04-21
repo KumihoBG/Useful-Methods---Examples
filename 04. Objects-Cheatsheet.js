@@ -12,6 +12,97 @@ function factory(library, orders) {
     return fulfilledOrders;
 }
 
+// Common task
+function heroicInventory(input) {
+    let heroes = [];
+    let items = [];
+
+    for (let line of input) {
+        let [name, level, attributes] = line.split(' / ');
+        level = Number(level);
+        // very important! how to destructuring array items
+        attributes = attributes ? attributes.split(', ') : [];
+        for (let el of attributes) {
+            items.push(el);
+        }
+        // we can push an object in array this way too
+        heroes.push({ name, level, items });
+        items = [];
+    }
+    // print array of objects as JSON representation
+    console.log(JSON.stringify(heroes));
+}
+
+// New kind of tasks
+function solve() {
+    const canFight = state => ({
+        fight: () => {
+        state.stamina--;
+        console.log(`${state.name} slashes at the foe!`);
+        }
+    });
+
+    const canCast = state => ({
+        cast: (spell) => {
+            state.mana--;
+            console.log(`${state.name} cast ${spell}`);
+        }
+    });
+
+    const fighter = name => {
+        let state = {
+            name,
+            health: 100,
+            stamina: 100,
+        }
+        return Object.assign(state, canFight(state));
+    }
+
+    const mage = name => {
+        let state = {
+            name,
+            health: 100,
+            mana: 100,
+        }
+        return Object.assign(state, canCast(state));
+    }
+
+    return { mage: mage, fighter: fighter };
+}
+
+// Sorted list
+function createSortedList() {
+    let collection = [];
+
+    let list = {
+        size: 0,
+        add,
+        remove,
+        get,
+    };
+
+    function add(element) {
+        collection.push(element);
+        this.size++;
+        collection.sort((a, b) => a - b);
+    }
+
+    function remove(index) {
+        if (index >= 0 && index < collection.length) {
+            collection.splice(index, 1);
+            this.size--;
+        }
+    }
+
+    function get(index) {
+        let element = collection[index];
+        if (index >= 0 && index < collection.length) {
+            return element;
+        }
+    }
+    return list;
+}
+
 // Fill object with key value elements from array input
 function getWantedWords(arr){
     let occurances = {};
@@ -19,6 +110,30 @@ function getWantedWords(arr){
         occurances[word] = 0;
     });;
     return occurances;
+}
+
+// Strange price comparison in object
+function lowestPrice(input) {
+    let products = {};
+    let result = [];
+
+    for (let line of input) {
+        let [town, product, price] = line.split(' | ');
+        price = Number(price);
+        if (!products[product]) {
+            products[product] = {
+                town,
+                price,
+            };
+        } else {
+            products[product] = products[product].price <= price ? products[product] : { town, price };
+        }
+    }
+
+    for (let product in products) {
+        result.push(`${product} -> ${products[product].price} (${products[product].town})`)
+    }
+    return result.join('\n');
 }
 
 // get Obj length

@@ -5,6 +5,20 @@ function sum(...theArgs) {
     });
   }
 
+// Split function - filter, map, trim
+function splitLine(input) {
+    return result = input
+        .split('|')
+        .filter(isEmptyString)
+        .map(el => el.trim())
+        .map(el => isNaN(el) ? el : Number(Number(el).toFixed(2)));
+}
+
+// Check if empty string
+function isEmptyString(w) {
+    return w !== "";
+}
+
 // Remove trailing zeroes
 firstNum = parseFloat(firstNum.toFixed(secondNum));
 
