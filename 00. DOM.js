@@ -41,3 +41,46 @@ function showText() {
     document.getElementById('more').style.display = 'none'
     document.getElementById('text').style.display = 'inline';
 }
+
+// Pascal and Camel case functions
+function solve() {
+    let text = document.getElementById('text').value;
+    const naming = document.getElementById('naming-convention').value;
+    let words = [];
+    let result = '';
+    let first = '';
+    let slice = '';
+    const span = document.getElementById('result');
+  
+    switch(naming) {
+      case "Camel Case": camelCase(text);  span.textContent = result; break;
+      case "Pascal Case": pascalCase(text);  span.textContent = result; break;
+      default:span.textContent = 'Error!'; break;
+    }
+  
+    function camelCase(text) {
+      words = text.split(' ');
+      let temp = '';
+      first = words.shift().toLowerCase();
+  
+      for (let i = 0; i < words.length; i++) {
+        let current = words[i].toLowerCase();
+        slice = current.slice(0,1);
+        let newStr = current.replace(slice, slice.toUpperCase());
+        temp += newStr;
+      }
+      return result = first + temp;
+    }
+  
+    function pascalCase(text) {
+      words = text.split(' ');
+      let temp = '';
+      for (let i = 0; i < words.length; i++) {
+        let current = words[i].toLowerCase();
+        slice = current.slice(0,1);
+        let newStr = current.replace(slice, slice.toUpperCase());
+        temp += newStr;
+      }
+      return result += temp;
+    }
+  }
