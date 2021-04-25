@@ -23,6 +23,31 @@ function extract(id) {
     return result.join('; ');
 }
 
+// Search elements in a table
+function solve() {
+  // listen for button click
+  document.querySelector('#searchBtn').addEventListener('click', onClick);
+
+  function onClick() {
+    // create array for manipulation
+     const rows = Array.from(document.getElementsByTagName('tr'));
+     const searchText = document.getElementById('searchField').value;
+     // loop through the rows
+     rows.forEach(tableElement => {
+        const student = tableElement.textContent;
+        // remove the class from the list
+        tableElement.classList.remove('select');
+        // compare the search text with the content
+        if (searchText && student.indexOf(searchText) >= 0) {
+          // add select class to the result to highlight it
+           tableElement.classList.toggle('select');
+        }
+        // clear the input field
+        document.getElementById('searchField').value = '';
+     });
+  }
+}
+
 // sum elements in dom
 function sumTable() {
     const rows = [...document.querySelectorAll('table tr')].slice(1, -1);
