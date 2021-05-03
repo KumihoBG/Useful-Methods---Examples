@@ -250,3 +250,18 @@ function attachGradientEvents() {
       document.getElementById('result').textContent = "";
   }
 }
+
+// Blurred focused elements inputs
+function focused() {
+  let inputs = document.querySelectorAll('input[type="text"]');
+  Array.from(inputs).forEach(x => {
+      x.addEventListener('focus', function(e) {
+          let parent = e.currentTarget.parentElement;
+          parent.classList.add('focused');
+      });
+      x.addEventListener('blur', function(e) {
+          let parent = e.currentTarget.parentElement;
+          parent.classList.remove('focused');
+      });
+  });
+}
