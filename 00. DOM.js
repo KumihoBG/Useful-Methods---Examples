@@ -196,3 +196,40 @@ function solve() {
     element.innerHTML += `<p>${para.textContent}</p>`;
   }
 }
+
+// Add - delete item to a list
+function addItem() {
+  let list = document.getElementById('items')
+  list.addEventListener('click', deleteItem);
+
+  let newItemText = document.getElementById('newText');
+  let newItem = document.createElement('li');
+  newItem.innerHTML = `${newItemText.value} <a href="#">[Delete]</a>`;
+  list.appendChild(newItem);
+  newItemText.value = '';
+
+  function deleteItem(item) {
+      let element = item.target.parentNode;
+      element.remove();
+  }
+}
+
+// Delete by Email from a table row
+function deleteByEmail() {
+  let input = document.getElementsByName('email')[0].value.trim();
+  let trs = document.getElementsByTagName('tr');
+  let trToBeDeleted = '';
+  let resultElement = document.getElementById('result');
+
+  for (let tr of trs) {
+      let td = tr.children[1];
+      if(td.textContent === input){
+          trToBeDeleted = tr;
+          resultElement.innerText = 'Deleted.';
+          trToBeDeleted.parentNode.removeChild(trToBeDeleted);
+          return;
+      }
+  }
+
+ resultElement.textContent = 'Not found.'
+}
