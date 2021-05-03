@@ -281,3 +281,41 @@ function validate() {
       }
   });
 }
+
+// Shopping cart
+function solve() {
+  let buttons = document.querySelectorAll('.add-product');
+  let checkoutButton = document.querySelector('.checkout');
+  let textArea = document.getElementsByTagName('textarea');
+  let totalMoney = [];
+  let productsList = [];
+
+  Array.from(buttons).forEach(x => {
+     x.addEventListener('click', e => {
+        let parent = e.currentTarget.parentElement.parentElement;
+        let currentPrice = Number(parent.lastChild.previousSibling.textContent);
+        let productName = parent.children[1].childNodes[1].textContent;
+        let productInfo = `Added ${productName} for ${currentPrice.toFixed(2)} to the cart.\n`
+        textArea[0].innerHTML += productInfo;
+        totalMoney.push(currentPrice);
+        productsList.push(productName);
+     });
+  });
+
+  checkoutButton.addEventListener('click', e => {
+     let finalList = [];
+     for (let product of productsList) {
+        if (!finalList.includes(product)) {
+           finalList.push(product);
+        }
+     }
+
+     let totalAmount = totalMoney.reduce((a, b) => a + b, 0);
+     let result = `You bought ${finalList.join(', ')} for ${totalAmount.toFixed(2)}.`
+     textArea[0].innerHTML += result;
+     let buttonsList = document.getElementsByTagName('button');
+     Array.from(buttonsList).forEach(button => {
+        button.disabled = true;
+     });
+  });
+}
