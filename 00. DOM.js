@@ -356,3 +356,33 @@ function addItem() {
   inputOne.value = '';
   inputTwo.value = '';
 }
+
+// Encode - decode messages
+function encodeAndDecodeMessages() {
+  let textAreaOne = document.getElementsByTagName('textarea')[0];
+  let textAreaTwo = document.getElementsByTagName('textarea')[1];
+  let main = document.getElementById('main');
+
+  main.addEventListener('click', (e) => {
+      if (e.target.textContent.includes('Encode')) {
+          let messageEncode = textAreaOne.value;
+          let newString = "";
+          for (let character of messageEncode) {
+              let newCharacter = character.charCodeAt() + 1;
+              let char = String.fromCharCode(newCharacter);
+              newString += char;
+          }
+          textAreaOne.value = "";
+          textAreaTwo.value = newString;
+      } else if (e.target.textContent.includes('Decode')) {
+          let messageDecode = textAreaTwo.value;
+          let finalString = "";
+          for (let character of messageDecode) {
+              let newCharacter = character.charCodeAt() - 1;
+              let char = String.fromCharCode(newCharacter);
+              finalString += char;
+          }
+          textAreaTwo.value = finalString;
+      }
+  });
+}
