@@ -343,3 +343,16 @@ function attachEventsListeners() {
   document.getElementById('minutesBtn').addEventListener('click', () => {convert(Number(minutes.value) * 60)});
   document.getElementById('secondsBtn').addEventListener('click', () => {convert(Number(seconds.value))});
 }
+
+// Drop down menu
+function addItem() {
+  let inputOne = document.getElementById('newItemText');
+  let inputTwo = document.getElementById('newItemValue');
+  let menu = document.getElementById('menu');
+  let option = document.createElement('option');
+  option.textContent = inputOne.value;
+  option.value = inputTwo.value;
+  menu.appendChild(option);
+  inputOne.value = '';
+  inputTwo.value = '';
+}
