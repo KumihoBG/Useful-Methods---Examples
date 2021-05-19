@@ -21,3 +21,12 @@ function solve(area, vol, input) {
 
     return result;
 }
+
+
+// simple add function 
+function solution(num) {
+    let numOne = Number(num);
+    return function(secondNum) {
+        return numOne + secondNum;
+    }
+}
