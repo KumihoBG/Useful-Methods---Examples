@@ -71,3 +71,22 @@ function filterEmployees(employees, criteria) {
         }
     }
 }
+
+// Object with functions as properties
+function solution() {
+    let internalString = "";
+    return {
+        append: function(string) {
+            return internalString += string;
+        },
+        removeStart: function(num) {
+            return internalString = internalString.substr(num);
+        },
+        removeEnd: function(num) {
+            return internalString = internalString.substring(0, internalString.length - num);
+        },
+        print: function() {
+            console.log(internalString);
+        }
+    }
+}
