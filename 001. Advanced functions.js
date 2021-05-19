@@ -50,3 +50,24 @@ function currencyFormatter(separator, symbol, symbolFirst, value) {
     if (symbolFirst) return symbol + ' ' + result;
     else return result + ' ' + symbol;
 }
+
+// Filter employees
+function filterEmployees(employees, criteria) {
+    employees = JSON.parse(employees);
+    let index = 0;
+    let [first, second] = criteria.split('-');
+    for (let employee of employees) {
+        let currentEmployee = Object.entries(employee);
+        let data = employee;
+        for (let line of currentEmployee) {
+            if (first === "all" || second === "all") {
+                console.log(`${index}. ${data.first_name} ${data.last_name} - ${data.email}`);
+                index++;
+                break;
+            } else if (line.includes(first) && line.includes(second)){
+                console.log(`${index}. ${data.first_name} ${data.last_name} - ${data.email}`);
+                index++;
+            }
+        }
+    }
+}
