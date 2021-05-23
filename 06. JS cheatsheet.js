@@ -798,6 +798,22 @@ function fibonacciOddNums(num) {
       return sum;
 }
 
+// Fibonacci with closure
+function getFibonator() {
+    let f0 = 0;
+    let f1 = 1;
+ 
+    return function () {
+        let oldf0 = f0;
+        let oldf1 = f1;
+ 
+        f0 = oldf1;
+        f1 = oldf0 + oldf1;
+ 
+        return f0;
+    }
+}
+
 // Split array in two parts
 function splitArray(values, size) {
     const nested = [];
