@@ -12,6 +12,28 @@ function factory(library, orders) {
     return fulfilledOrders;
 }
 
+// using arguments and typeof
+function solve() {
+    let result = [];
+    let count = {};
+    [...arguments].forEach(argument => {
+        let type = typeof argument;
+        result.push({ type, value: argument});
+
+        if (!count[type]) {
+            count[type] = 0;
+        }
+
+        count[type]++;
+    });
+
+    result.forEach(r => console.log(`${r.type}: ${r.value}`));
+    let sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
+    sorted.forEach(el => {
+        console.log(`${el[0]} = ${el[1]}`);
+    })
+} 
+
 // Common task
 function heroicInventory(input) {
     let heroes = [];
