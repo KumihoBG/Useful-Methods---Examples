@@ -1,3 +1,23 @@
+// Functions create and append
+
+function createHTMLElements(tagName, textContent, attributes, event) {
+  let newHTMLElement = document.createElement(tagName);
+  if (textContent) {
+      newHTMLElement.textContent = textContent;
+  }
+  if (attributes) {
+      attributes.forEach(attribute => newHTMLElement.setAttribute(attribute.key, attribute.value))
+  }
+  if (event) {
+      newHTMLElement.addEventListener(event.type, event.function);
+  }
+  return newHTMLElement;
+}
+
+function appendHTMLElements(parent, children) {
+  children.forEach(child => parent.appendChild(child));
+}
+
 // Cinema 
 function solve() {
   let name = document.querySelector('#container input:nth-of-type(1)');
