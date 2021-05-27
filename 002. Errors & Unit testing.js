@@ -1,3 +1,6 @@
+// Useful npm commands
+// -- install chai locally      npm install --save-dev chai
+
 // Sum numbers
 function subSum(arr, start, end) {
     // check if it is an array
