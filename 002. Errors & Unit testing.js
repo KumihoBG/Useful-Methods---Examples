@@ -43,3 +43,50 @@ function createCard(face, suit) {
         }
     };
 }
+
+// Deck of cards
+function printDeckOfCards(cards) {
+    let result = [];
+    let isInvalid = false;
+
+    function createCard (face, suit){
+        const validFaces = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        const suitToString = {
+            'S': '\u2660',
+            'H': '\u2665',
+            'D': '\u2666',
+            'C': '\u2663',
+        };
+    
+        if (validFaces.includes(face) == false) {
+            throw new Error('Invalid face');
+        } else if (Object.keys(suitToString).includes(suit) == false) {
+            throw new Error('Invalid suit');
+        };
+    
+        return {
+            face,
+            suit,
+            toString() {
+                return `${face}${suitToString[suit]}`;
+            }
+        };
+    }
+    
+    for (let card of cards) {
+        try {
+            let start = card.length - 1;
+            let suit = card.substring(start);
+            let face = card.substring(0, start);
+            let resultCard = createCard(face, suit).toString();
+            result.push(resultCard); 
+        } catch {
+            console.log(`Invalid card: ${card}`);
+            isInvalid = true;
+        }
+    }
+    if (isInvalid !== true) {
+        return result.join(' '); 
+    }
+    return result;
+}
