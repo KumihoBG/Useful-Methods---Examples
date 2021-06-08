@@ -826,6 +826,7 @@ function needForSpeed(input) {
         commands = input.shift();
     }
     let sorted = Object.entries(cars);
+    
     // good sorting function
     sorted.sort((a, b) => {
         if (b[1].mileage === a[1].mileage){
