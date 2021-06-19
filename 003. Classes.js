@@ -238,12 +238,15 @@ class ChristmasDinner {
     }
 
     showAttendance() {
-        let guestsList = Object.entries(this.guests);
-        let result = [];
-        // printing from an array with objects - ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}
-        for (let [guestName, dish] of guestsList) {
-            result.push(`${guestName} will eat ${dish}, which consists of ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}`);
-        }
-        return result.join('\n');
+        // let guestsList = Object.entries(this.guests);
+        // let result = [];
+        // // printing from an array with objects - ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}
+        // for (let [guestName, dish] of guestsList) {
+        //     result.push(`${guestName} will eat ${dish}, which consists of ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}`);
+        // }
+        // return result.join('\n');
+        return Object.entries(this.guests)
+        .reduce((accumulator, [guestName, dish]) => accumulator.concat([`${guestName} will eat ${dish}, which consists of ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}`]), [])
+        .join('\n');
     }
 }
