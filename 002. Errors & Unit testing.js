@@ -94,6 +94,45 @@ function printDeckOfCards(cards) {
 // Unit testing
 module.exports = mathEnforcer;
 
+// Typical task
+describe('Tests', () => {
+    describe("newCarCost", function() {
+        it('Returns original price when model unsupported', function() {
+           expect(dealership.newCarCost('a', 1)).to.equal(1);
+        });
+
+        it('Returns discounted price', function() {
+            expect(dealership.newCarCost('Audi A4 B8', 30000)).to.equal(15000);
+         });
+     });
+
+     describe("carEquipment", function() {
+        it("single element, single pick", function() {
+            // testing arrays
+            expect(dealership.carEquipment(['a'], [0])).to.deep.equal(['a']);
+        });
+        it("single element, single pick", function() {
+            expect(dealership.carEquipment(['a', 'b', 'c'], [0, 2])).to.deep.equal(['a', 'c']);
+        });
+        it("single element, single pick", function() {
+            expect(dealership.carEquipment(['a', 'b', 'c'], [1])).to.deep.equal(['b']);
+        });
+     });
+
+     describe("euroCategory", function() {
+        it("category is below treshold", function() {
+            expect(dealership.euroCategory(1)).to.equal('Your euro category is low, so there is no discount from the final price!');
+        });
+        it("category is above treshold", function() {
+            expect(dealership.euroCategory(5)).to.equal(`We have added 5% discount to the final price: 14250.`);
+        });
+        it("category is at treshold", function() {
+            expect(dealership.euroCategory(4)).to.equal(`We have added 5% discount to the final price: 14250.`);
+        });
+     });
+})
+
+// Testing numbers
 let mathEnforcer = require('../index');
 let { expect } = require('chai');
 
