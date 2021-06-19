@@ -182,3 +182,68 @@ function solve(){
 
     return {Keyboard, Monitor, Battery, Computer, Laptop, Desktop};
 }
+
+// Standard exam task - some, find
+class ChristmasDinner {
+    constructor(budget) {
+        this.budget = budget;
+        this.dishes = [];
+        this.products = [];
+        this.guests = {};
+    }
+
+    set budget(value) {
+        if (value <= 0) {
+            throw new Error("The budget cannot be a negative number");
+        } else {
+            this._budget = value;
+        }
+    }
+
+    get budget() {
+        return this._budget;
+    }
+
+    shopping([type, price]) {
+        if (price > this.budget) {
+            throw new Error("Not enough money to buy this product");
+        } else {
+            this._budget -= price;
+            this.products.push(type);
+            return `You have successfully bought ${type}!`
+        }
+    }
+
+    recipes({ recipeName, productsList}) {
+        if (productsList.some(p => this.products.includes(p) == false)) {
+            throw new Error("We do not have this product");
+        }
+        this.dishes.push({
+            recipeName,
+            productsList
+        });
+        return `${recipeName} has been successfully cooked!`
+    }
+
+    inviteGuests(name, dish) {
+        // looks inside of an array for some of its elements
+        if (!this.dishes.some(d => d.recipeName === dish)) {
+            throw new Error("We do not have this dish");
+        } else if (this.guests.hasOwnProperty(name)) {
+            throw new Error("This guest has already been invited");
+        } else {
+            this.guests[name] = dish;
+            return `You have successfully invited ${name}!`
+        }
+    }
+
+    showAttendance() {
+        let guestsList = Object.entries(this.guests);
+        let result = [];
+        // printing from an array with objects - ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}
+        for (let [guestName, dish] of guestsList) {
+            result.push(`${guestName} will eat ${dish}, which consists of ${this.dishes.find(d => d.recipeName == dish).productsList.join(', ')}`);
+        }
+        return result.join('\n');
+    }
+}
