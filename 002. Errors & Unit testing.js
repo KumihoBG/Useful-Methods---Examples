@@ -90,3 +90,62 @@ function printDeckOfCards(cards) {
     }
     return result;
 }
+
+// Unit testing
+module.exports = mathEnforcer;
+
+let mathEnforcer = require('../index');
+let { expect } = require('chai');
+
+describe ('mathEnforcer', () => {
+    describe('addFive function', () => {
+        it('should return correct result with a non-number parameter', () => {
+            expect(mathEnforcer.addFive('a')).to.be.equal(undefined);
+        });
+        it('should return correct result with negative numbers', () => {
+            expect(mathEnforcer.addFive(-1)).to.be.equal(4);
+        });
+        it('should be tested for floating-point numbers', () => {
+            expect(mathEnforcer.addFive(1.5)).to.be.closeTo(6.5, 0.00001);
+        });
+        it('should return correct result with a number parameter', () => {
+            expect(mathEnforcer.addFive(5)).to.equal(10);
+        });
+    });
+    
+    describe('substractTen function', () => {
+        it('should return correct result with a non-number parameter', () => {
+            expect(mathEnforcer.subtractTen('a')).to.equal(undefined);
+        });
+        it('should return correct result with negative numbers', () => {
+            expect(mathEnforcer.subtractTen(-10)).to.be.equal(-20);
+        });
+        it('should be tested for floating-point numbers', () => {
+            expect(mathEnforcer.subtractTen(10.5)).to.be.closeTo(0.5, 0.00001);
+        });
+        it('should return correct result with a number parameter', () => {
+            expect(mathEnforcer.subtractTen(10)).to.equal(0);
+        });
+    });
+    
+    describe('sum function', () => {
+        it('should return correct result with a non-number parameter', () => {
+            expect(mathEnforcer.sum('a', 1)).to.equal(undefined);
+        });
+        it('should return correct result with negative numbers', () => {
+            expect(mathEnforcer.sum(-1, -1)).to.be.equal(-2);
+        });
+        it('should be tested for floating-point numbers', () => {
+            expect(mathEnforcer.sum(1.5, 1.6)).to.be.closeTo(3.1, 0.00001);
+        });
+        it('should return correct result with a non-number parameter', () => {
+            expect(mathEnforcer.sum(1, 'a')).to.equal(undefined);
+        });
+        it('should return correct result with a non-number parameter', () => {
+            expect(mathEnforcer.sum('a', 'a')).to.equal(undefined);
+        });
+        it('should return correct result with a number parameter', () => {
+            expect(mathEnforcer.sum(1, 1)).to.equal(2);
+        });
+    });
+});
