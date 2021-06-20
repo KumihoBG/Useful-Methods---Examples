@@ -188,3 +188,53 @@ describe ('mathEnforcer', () => {
         });
     });
 });
+
+// Testing an error in empty object
+describe("Tests", function () {
+    describe("makeAnOrder(obj)", function () {
+        it("Return correct result", function () {
+            expect(pizzUni.makeAnOrder({
+                orderedPizza: "the name of the pizza",
+                orderedDrink: "the name of the drink"
+            })).to.equal("You just ordered the name of the pizza and the name of the drink.");
+        });
+
+        it("Return confirmation", function () {
+            expect(pizzUni.makeAnOrder({
+                orderedPizza: "the name of the pizza"
+            })).to.equal("You just ordered the name of the pizza");
+        });
+        // calling anonymous function to get the error status
+        it("Return error message", function () {
+            expect(function(){
+                pizzUni.makeAnOrder({});
+            }).to.throw('You must order at least 1 Pizza to finish the order.');
+        });
+    });
+
+    describe("getRemainingWork(statusArr)", function () {
+        it("Confirms status of the order", function () {
+            expect(pizzUni.getRemainingWork([{
+                pizzaName: 'the name of the pizza',
+                status: 'ready'
+            }])).to.equal('All orders are complete!');
+        });
+
+        it("Confirms status of the order", function () {
+            expect(pizzUni.getRemainingWork([{
+                pizzaName: 'the name of the pizza',
+                status: 'preparing'
+            }])).to.equal(`The following pizzas are still preparing: the name of the pizza.`);
+        });
+    });
+
+    describe("orderType(totalSum, typeOfOrder)", function () {
+        it("Checks type of order", function () {
+            expect(pizzUni.orderType(2, 'Carry Out')).to.equal(1.8);
+        });
+
+        it("Checks type of order", function () {
+            expect(pizzUni.orderType(2, 'Delivery')).to.equal(2);
+        });
+    });
+});
