@@ -17,6 +17,76 @@ function createHTMLElements(tagName, textContent, attributes, event) {
 function appendHTMLElements(parent, children) {
   children.forEach(child => parent.appendChild(child));
 }
+// Christmas gifts
+function solution() {
+    let buttonAdd = document.querySelector('.card > div > button');
+    let addGiftsInput = document.querySelector('.card > div > input');
+    let ulElement = document.querySelector('.card > ul');
+
+    buttonAdd.addEventListener('click', e => {
+        e.preventDefault();
+        if (addGiftsInput.value == "") {
+            return;
+        }
+        let liElement = document.createElement('li');
+        liElement.textContent = addGiftsInput.value;
+        liElement.setAttribute("class", "gift");
+        let sendBtn = createElement('button', 'Send', "#sendButton", liElement);
+        sendBtn.setAttribute("id", "sendButton");
+        let discardBtn = createElement('button', 'Discard', "#discardButton", liElement);
+        discardBtn.setAttribute("id", "discardButton");
+        ulElement.appendChild(liElement);
+        let newList = Array.from(ulElement.children);
+        sortList(newList);
+        addGiftsInput.value = "";
+
+        sendBtn.addEventListener('click', e => {
+            e.preventDefault();
+            let ulGiftSection = document.querySelectorAll('section')[2].querySelector('ul');
+            let currentLiElement = e.currentTarget.parentElement;
+            removeAllChildNodes(currentLiElement);
+            ulGiftSection.appendChild(liElement);
+        })
+
+        discardBtn.addEventListener('click', e => {
+            e.preventDefault();
+            let ulDiscardSection = document.querySelectorAll('section')[3].querySelector('ul');
+            let currentLiElement = e.currentTarget.parentElement;
+            removeAllChildNodes(currentLiElement);
+            ulDiscardSection.appendChild(liElement);
+        })
+    })
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild.nextSibling) {
+            parent.removeChild(parent.firstChild.nextSibling);
+        }
+    }
+
+    function sortList(ul) {
+        let ulSorted = document.querySelector('.card > ul');
+        Array.from(ulSorted.children)
+            .sort((a, b) => a.textContent.localeCompare(b.textContent))
+            .forEach(li => ulSorted.appendChild(li));
+    }
+
+    function createElement(type, content, attribute, appender) {
+        const el = document.createElement(type);
+        if (attribute.includes("class")) {
+            el.setAttribute('class', attribute);
+            el.textContent = content;
+        } else if (attribute.includes("#")) {
+            el.setAttribute('id', attribute);
+            el.textContent = content;
+        } else if (content) {
+            el.textContent = content;
+        }
+        if (appender) {
+            appender.appendChild(el);
+        }
+        return el;
+    }
+}
 
 // Cinema 
 function solve() {
